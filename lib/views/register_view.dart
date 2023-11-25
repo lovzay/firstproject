@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'dart:developer' as devtools show log;
 
 class RegisterView extends StatefulWidget {
-  const RegisterView({super.key});
+  const RegisterView({Key? key}) : super(key: key);
 
   @override
-  State<RegisterView> createState() => _RegisterViewState();
+  _RegisterViewState createState() => _RegisterViewState();
 }
 
 class _RegisterViewState extends State<RegisterView> {
@@ -40,16 +40,18 @@ class _RegisterViewState extends State<RegisterView> {
             enableSuggestions: false,
             autocorrect: false,
             keyboardType: TextInputType.emailAddress,
-            decoration:
-                const InputDecoration(hintText: 'Enter your email here'),
+            decoration: const InputDecoration(
+              hintText: 'Enter your email here',
+            ),
           ),
           TextField(
             controller: _password,
             obscureText: true,
             enableSuggestions: false,
             autocorrect: false,
-            decoration:
-                const InputDecoration(hintText: 'Enter your password here'),
+            decoration: const InputDecoration(
+              hintText: 'Enter your password here',
+            ),
           ),
           TextButton(
             onPressed: () async {
@@ -66,9 +68,9 @@ class _RegisterViewState extends State<RegisterView> {
                 if (e.code == 'weak-password') {
                   devtools.log('Weak password');
                 } else if (e.code == 'email-already-in-use') {
-                  devtools.log('Email already in use');
+                  devtools.log('Email is already in use');
                 } else if (e.code == 'invalid-email') {
-                  devtools.log('Invalid email entered');
+                  devtools.log('invalid email entered');
                 }
               }
             },
