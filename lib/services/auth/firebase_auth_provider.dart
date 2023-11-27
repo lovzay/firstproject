@@ -1,6 +1,7 @@
 import 'package:firstproject/services/auth/auth_user.dart';
 import 'package:firstproject/services/auth/auth_exceptions.dart';
 import 'package:firstproject/services/auth/auth_provider.dart';
+
 import 'package:firebase_auth/firebase_auth.dart'
     show FirebaseAuth, FirebaseAuthException;
 
@@ -78,7 +79,6 @@ class FirebaseAuthProvider implements AuthProvider {
   @override
   Future<void> logOut() async {
     final user = FirebaseAuth.instance.currentUser;
-
     if (user != null) {
       FirebaseAuth.instance.signOut();
     } else {
