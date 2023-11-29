@@ -4,8 +4,6 @@
 .dart_tool/
 .packages
 build/
-android/.gradle
-.gradle/
 # If you're building an application, you may want to check-in your pubspec.lock
 pubspec.lock
 
@@ -27,3 +25,20 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
