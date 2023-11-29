@@ -11,11 +11,16 @@ class NotesService {
   List<DatabaseNote> _notes = [];
 
   static final NotesService _shared = NotesService._sharedInstance();
-  NotesService._sharedInstance();
+  NotesService._sharedInstance() {
+    _notesStreamController = StreamController<List<DatabaseNote>>.broadcast(
+      onListen: () {
+        _notesStreamController.sink.add(_notes);
+      },
+    );
+  }
   factory NotesService() => _shared;
 
-  final _notesStreamController =
-      StreamController<List<DatabaseNote>>.broadcast();
+  late final StreamController<List<DatabaseNote>> _notesStreamController;
 
   Stream<List<DatabaseNote>> get allNotes => _notesStreamController.stream;
 
@@ -91,13 +96,13 @@ class NotesService {
     }
   }
 
-  Future<int> deleteAllnotes() async {
+  Future<int> deleteAllNotes() async {
     await _ensureDbIsOpen();
     final db = _getDatabaseOrThrow();
-    final numberofDeletions = await db.delete(noteTable);
+    final numberOfDeletions = await db.delete(noteTable);
     _notes = [];
     _notesStreamController.add(_notes);
-    return numberofDeletions;
+    return numberOfDeletions;
   }
 
   Future<void> deleteNote({required int id}) async {
@@ -191,7 +196,7 @@ class NotesService {
     final db = _getDatabaseOrThrow();
     final deletedCount = await db.delete(
       userTable,
-      where: 'email = ',
+      where: 'email = ?',
       whereArgs: [email.toLowerCase()],
     );
     if (deletedCount != 1) {
@@ -241,7 +246,7 @@ class NotesService {
       await db.execute(createNoteTable);
       await _cacheNotes();
     } on MissingPlatformDirectoryException {
-      throw UnableToGetDocumentDirectory();
+      throw UnableToGetDocumentsDirectory();
     }
   }
 }
@@ -257,7 +262,7 @@ class DatabaseUser {
 
   DatabaseUser.fromRow(Map<String, Object?> map)
       : id = map[idColumn] as int,
-        email = map["emailColumn"] as String;
+        email = map[emailColumn] as String;
 
   @override
   String toString() => 'Person, ID = $id, email = $email';
@@ -284,8 +289,8 @@ class DatabaseNote {
 
   DatabaseNote.fromRow(Map<String, Object?> map)
       : id = map[idColumn] as int,
-        userId = map["userIdColumn"] as int,
-        text = map["textColumn"] as String,
+        userId = map[userIdColumn] as int,
+        text = map[textColumn] as String,
         isSyncedWithCloud =
             (map[isSyncedWithCloudColumn] as int) == 1 ? true : false;
 
