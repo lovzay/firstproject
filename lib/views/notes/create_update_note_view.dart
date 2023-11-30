@@ -1,9 +1,9 @@
+// ignore_for_file: library_private_types_in_public_api
 import 'package:firstproject/services/auth/auth_service.dart';
 import 'package:firstproject/utilities/dialogs/cannot_share_empty_note_dialog.dart';
 import 'package:firstproject/utilities/dialogs/generics/get_arguments.dart';
 import 'package:flutter/material.dart';
 import 'package:firstproject/services/cloud/cloud_note.dart';
-import 'package:firstproject/services/cloud/cloud_storage_exceptions.dart';
 import 'package:firstproject/services/cloud/firebase_cloud_storage.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -11,7 +11,7 @@ class CreateUpdateNoteView extends StatefulWidget {
   const CreateUpdateNoteView({super.key});
 
   @override
-  State<CreateUpdateNoteView> createState() => _CreateUpdateNoteViewState();
+  _CreateUpdateNoteViewState createState() => _CreateUpdateNoteViewState();
 }
 
 class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
@@ -43,7 +43,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
     _textController.addListener(_textControllerListener);
   }
 
-  Future<CloudNote> createOrGetExistingNote(BuildContext) async {
+  Future<CloudNote> createOrGetExistingNote(BuildContext context) async {
     final widgetNote = context.getArgument<CloudNote>();
 
     if (widgetNote != null) {
@@ -70,7 +70,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
     }
   }
 
-  void _saveNoteIfTextIsNotEmpty() async {
+  void _saveNoteIfTextNotEmpty() async {
     final note = _note;
     final text = _textController.text;
     if (note != null && text.isNotEmpty) {
@@ -84,7 +84,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   @override
   void dispose() {
     _deleteNoteIfTextIsEmpty();
-    _saveNoteIfTextIsNotEmpty();
+    _saveNoteIfTextNotEmpty();
     _textController.dispose();
     super.dispose();
   }

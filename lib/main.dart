@@ -1,5 +1,4 @@
 import 'package:firstproject/constants/routes.dart';
-import 'package:firstproject/services/auth/auth_service.dart';
 import 'package:firstproject/services/auth/bloc/auth_bloc.dart';
 import 'package:firstproject/services/auth/bloc/auth_event.dart';
 import 'package:firstproject/services/auth/bloc/auth_state.dart';
