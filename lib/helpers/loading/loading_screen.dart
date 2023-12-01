@@ -38,9 +38,7 @@ class LoadingScreen {
     _text.add(text);
 
     final state = Overlay.of(context);
-
     final renderBox = context.findRenderObject() as RenderBox;
-
     final size = renderBox.size;
 
     final overlay = OverlayEntry(
@@ -90,7 +88,7 @@ class LoadingScreen {
       },
     );
 
-    state.insert(overlay);
+    state?.insert(overlay);
 
     return LoadingScreenController(
       close: () {
