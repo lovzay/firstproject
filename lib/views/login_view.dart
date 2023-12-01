@@ -3,7 +3,6 @@ import 'package:firstproject/services/auth/bloc/auth_bloc.dart';
 import 'package:firstproject/services/auth/bloc/auth_event.dart';
 import 'package:firstproject/services/auth/bloc/auth_state.dart';
 import 'package:firstproject/utilities/dialogs/error_dialog.dart';
-import 'package:firstproject/utilities/dialogs/loading_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 

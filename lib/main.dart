@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:firstproject/views/login_view.dart';
 import 'package:firstproject/views/verify_email_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:path/path.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
