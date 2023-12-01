@@ -1,13 +1,11 @@
 // ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api
-import 'package:firstproject/constants/routes.dart';
-import 'package:firstproject/services/auth/auth_service.dart';
 import 'package:firstproject/services/auth/bloc/auth_bloc.dart';
 import 'package:firstproject/services/auth/bloc/auth_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VerifyEmailView extends StatefulWidget {
-  const VerifyEmailView({Key? key}) : super(key: key);
+  const VerifyEmailView({super.key});
 
   @override
   _VerifyEmailViewState createState() => _VerifyEmailViewState();
